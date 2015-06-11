@@ -1,21 +1,30 @@
 <!DOCTYPE html>
-<!-- include three.js -->
-<script src='../vendor/three.js/build/three.js'></script>
-<script src='../vendor/three.js/editor/js/libs/app.js'></script>
+<head>
+	<meta charset="UTF-8">
+	<title>test camera webRTC</title>
 
-<!-- include js-aruco -->
-<script src='../vendor/js-aruco/svd.js'></script>
-<script src='../vendor/js-aruco/posit1-patched.js'></script>
-<script src='../vendor/js-aruco/cv.js'></script>
-<script src='../vendor/js-aruco/aruco.js'></script>
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
 
-<!-- include some extensions -->
-<script src='../src/threex.webcamgrabbing.js'></script>
-<script src='../src/threex.imagegrabbing.js'></script>
-<script src='../src/threex.videograbbing.js'></script>
-<script src='../src/threex.jsarucomarker.js'></script>
+	<link rel="stylesheet" href="css/style.css">
 
-<body style='margin: 0px; overflow: hidden; text-align:center;'><script>
+	<!-- include three.js -->
+	<script src='../vendor/three.js/build/three.js'></script>
+	<script src='../vendor/three.js/editor/js/libs/app.js'></script>
+
+	<!-- include js-aruco -->
+	<script src='../vendor/js-aruco/svd.js'></script>
+	<script src='../vendor/js-aruco/posit1-patched.js'></script>
+	<script src='../vendor/js-aruco/cv.js'></script>
+	<script src='../vendor/js-aruco/aruco.js'></script>
+
+	<!-- include some extensions -->
+	<script src='../src/threex.webcamgrabbing.js'></script>
+	<script src='../src/threex.imagegrabbing.js'></script>
+	<script src='../src/threex.videograbbing.js'></script>
+	<script src='../src/threex.jsarucomarker.js'></script>
+</head>
+<body><script>
 	//////////////////////////////////////////////////////////////////////////////////
 	//		Init
 	//////////////////////////////////////////////////////////////////////////////////
@@ -101,16 +110,16 @@ return
 	})
 
 	// run the rendering loop
-	var previousTime = performance.now()
-	requestAnimationFrame(function animate(now){
-
+	var lastTimeMsec = performance.now()
+	requestAnimationFrame(function animate(nowMsec){
+		// keep looping
 		requestAnimationFrame( animate );
-
+		// call each update function
 		onRenderFcts.forEach(function(onRenderFct){
-			onRenderFct(now, now - previousTime)
+			onRenderFct(nowMsec, nowMsec - lastTimeMsec)
 		})
-
-		previousTime	= nowMsec
+		// update
+		lastTimeMsec	= nowMsec
 	})
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -128,7 +137,7 @@ return
 	}else if( true ){
 		var videoGrabbing = new THREEx.WebcamGrabbing()
 		jsArucoMarker.videoScaleDown = 2
-	}else if( true ){
+	}else if( false ){
 		var videoGrabbing = new THREEx.ImageGrabbing()
 		jsArucoMarker.videoScaleDown = 10
 	}else console.assert(false)
@@ -153,4 +162,12 @@ return
 			object3d.visible = true
 		})
 	})
+	
+	var goFS = document.querySelector("body");
+	goFS.addEventListener("click", function() {
+	  var container = document.querySelector("body");
+	  container.webkitRequestFullScreen();
+	}, false);
+
+
 </script></body>
