@@ -3,8 +3,8 @@
 	<meta charset="UTF-8">
 	<title>test camera webRTC</title>
 
-	<meta name="mobile-web-app-capable" content="yes">
-	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!-- <meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes"> -->
 
 	<link rel="stylesheet" href="css/style.css">
 
@@ -37,13 +37,30 @@
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	document.body.appendChild( renderer.domElement );
 
+	renderer.domElement.style.position  = "absolute"; 
+	renderer.domElement.style.right  = 0; 
+	renderer.domElement.style.bottom = 0;
+	renderer.domElement.style.minWidth   = "100%"; 
+	renderer.domElement.style.minHeight  = "100%";
+	renderer.domElement.style.width  = "auto"; 
+	renderer.domElement.style.height = "auto"; 
+	renderer.domElement.style.zIndex = -100;
+	// renderer.domElement.style.backgroundSize = "cover";
+	renderer.domElement.style.overflow   = "hidden";
+
+
+
 	// array of functions for the rendering loop
 	var onRenderFcts = [];
 
 	// init scene and camera
 	var scene = new THREE.Scene()
-	var camera	= new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.01, 1000);
+	var camera	= new THREE.PerspectiveCamera(30
+		, window.innerWidth / window.innerHeight, 0.01, 1000);
 	camera.position.z = 2;
+
+	console.log(window.innerWidth,window.innerHeight)
+
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		add an object in the scene
@@ -110,16 +127,16 @@ return
 	})
 
 	// run the rendering loop
-	var lastTimeMsec = performance.now()
-	requestAnimationFrame(function animate(nowMsec){
+	var previousTime = performance.now()
+	requestAnimationFrame(function animate(now){
 		// keep looping
 		requestAnimationFrame( animate );
 		// call each update function
 		onRenderFcts.forEach(function(onRenderFct){
-			onRenderFct(nowMsec, nowMsec - lastTimeMsec)
+			onRenderFct(now, now - previousTime)
 		})
 		// update
-		lastTimeMsec	= nowMsec
+		previousTime	= nowMsec
 	})
 
 	//////////////////////////////////////////////////////////////////////////////////
