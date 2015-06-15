@@ -186,15 +186,21 @@
 			// 28 fov wanted by aspect ratio, divided by original aspect ratio
 				return (28*sourceHeight/sourceWidth)/(0.5166080500195389);
 		}
-		function updateCamera(){
+		function updateView(){
+			sourceWidth = videoGrabbing.domElement.scrollWidth;
+			sourceHeight = videoGrabbing.domElement.scrollHeight;
+			
 			renderer.setSize( sourceWidth, sourceHeight );
 			camera.aspect	= sourceWidth / sourceHeight;
 			camera.fov = getFOV();
 			camera.updateProjectionMatrix();
+
+			renderer.domElement.style.width  = sourceWidth+"px"; 
+	    	renderer.domElement.style.height = sourceHeight+"px";
 		}
 		// handle window resize
 		window.addEventListener('resize', function(){
-			updateCamera();
+			updateView();
 		}, false)
 
 		var goFS = document.querySelector("body");
