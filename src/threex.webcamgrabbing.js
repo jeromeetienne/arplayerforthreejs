@@ -17,22 +17,12 @@ THREEx.WebcamGrabbing = function(){
         domElement.setAttribute('autoplay', true)
 
         // window.domElement = video
-        domElement.style.zIndex = -1;
-        domElement.style.position = 'absolute'
-
-        // domElement.style.top = '0px'
-        // domElement.style.left = '0px'
-        // domElement.style.width = '100%'
-        // domElement.style.height = '100%'
-
-        domElement.style.right  = 0; 
-        domElement.style.bottom = 0;
-        domElement.style.minWidth   = "100%"; 
-        domElement.style.minHeight  = "100%";
-        domElement.style.width  = "auto"; 
-        domElement.style.height = "auto"; 
+        domElement.style.position = 'absolute';
+        domElement.style.top = 0;
+        domElement.style.left = 0;
+        domElement.style.minWidth = '100%';
+        domElement.style.minHeight = '100%';
         domElement.style.zIndex = -100;
-        // domElement.style.backgroundSize = "cover";
         domElement.style.overflow   = "hidden";
 
         /**
@@ -47,25 +37,6 @@ THREEx.WebcamGrabbing = function(){
 
                 var videoAspect = domElement.videoWidth / domElement.videoHeight;
                 var windowAspect = window.innerWidth / window.innerHeight;
-                if(windowAspect<0.60){
-                        console.log("9:16")
-                }else if(windowAspect<0.69){
-                        console.log("10:16")
-                }else if(windowAspect<0.78){
-                        console.log("3:4")
-                }else if(windowAspect<0.9){
-                        console.log("4:5")
-                }else if(windowAspect<1.125){
-                        console.log("1:1")
-                }else if(windowAspect<1.29){
-                        console.log("5:4")
-                }else if(windowAspect<1.47){
-                        console.log("4:3")
-                }else if (windowAspect<1.69){
-                        console.log("16:10")
-                }else{
-                        console.log("16:9")
-                }
         }
 
         window.addEventListener('resize', function(event){
@@ -81,14 +52,13 @@ THREEx.WebcamGrabbing = function(){
                         // video: true,
                         audio: false,
                         video: {
-                            mandatory: {
-                              minAspectRatio: aspectRatio
-                            }
+                                mandatory: {
+                                        minAspectRatio: aspectRatio
+                                }
                         }
                 }
                 // to mirror the video element when it isnt 'environment'
                 // domElement.style.transform   = 'scaleX(-1)'
-
                 // it it finds the videoSource 'environment', modify constraints.video
                 for (var i = 0; i != sourceInfos.length; ++i) {
                         var sourceInfo = sourceInfos[i];
@@ -101,7 +71,7 @@ THREEx.WebcamGrabbing = function(){
                         }
                 }
 
-                // try to get user media
+                // try to get user media (click event)
                 navigator.getUserMedia( constraints, function(stream){
                         domElement.src = URL.createObjectURL(stream);
                 }, function(error) {
