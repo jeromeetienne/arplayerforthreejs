@@ -1,156 +1,214 @@
 <!DOCTYPE html>
-<!-- include three.js -->
-<script src='../vendor/three.js/build/three.js'></script>
-<script src='../vendor/three.js/editor/js/libs/app.js'></script>
+<head>
+	<meta charset="UTF-8">
+	<title>test camera webRTC</title>
 
-<!-- include js-aruco -->
-<script src='../vendor/js-aruco/svd.js'></script>
-<script src='../vendor/js-aruco/posit1-patched.js'></script>
-<script src='../vendor/js-aruco/cv.js'></script>
-<script src='../vendor/js-aruco/aruco.js'></script>
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 
-<!-- include some extensions -->
-<script src='../src/threex.webcamgrabbing.js'></script>
-<script src='../src/threex.imagegrabbing.js'></script>
-<script src='../src/threex.videograbbing.js'></script>
-<script src='../src/threex.jsarucomarker.js'></script>
+	<link rel="stylesheet" href="css/style.css">
 
-<body style='margin: 0px; overflow: hidden; text-align:center;'><script>
-	//////////////////////////////////////////////////////////////////////////////////
-	//		Init
-	//////////////////////////////////////////////////////////////////////////////////
+	<!-- include three.js -->
+	<script src='../vendor/three.js/build/three.js'></script>
+	<script src='../vendor/three.js/editor/js/libs/app.js'></script>
 
-	// init renderer
-	var renderer	= new THREE.WebGLRenderer({
-		antialias	: true,
-		alpha		: true,
-	});
-	renderer.setSize( window.innerWidth, window.innerHeight );
-	document.body.appendChild( renderer.domElement );
+	<!-- include js-aruco -->
+	<script src='../vendor/js-aruco/svd.js'></script>
+	<script src='../vendor/js-aruco/posit1-patched.js'></script>
+	<script src='../vendor/js-aruco/cv.js'></script>
+	<script src='../vendor/js-aruco/aruco.js'></script>
 
-	// array of functions for the rendering loop
-	var onRenderFcts = [];
-
-	// init scene and camera
-	var scene = new THREE.Scene()
-	var camera	= new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.01, 1000);
-	camera.position.z = 2;
+	<!-- include some extensions -->
+	<script src='../src/threex.webcamgrabbing.js'></script>
+	<script src='../src/threex.imagegrabbing.js'></script>
+	<script src='../src/threex.videograbbing.js'></script>
+	<script src='../src/threex.jsarucomarker.js'></script>
+</head>
+<body><script>
 
 	//////////////////////////////////////////////////////////////////////////////////
-	//		add an object in the scene
+	//		Init the image source grabbing
 	//////////////////////////////////////////////////////////////////////////////////
-
-	// add a rotating earth to the scene
-	;(function(){
-return
-		var geometry = new THREE.SphereGeometry(0.5, 32, 16, Math.PI)
-		var material = new THREE.MeshBasicMaterial( {
-			map: THREE.ImageUtils.loadTexture("images/earth.jpg")
-		})
-		var mesh = new THREE.Mesh(geometry, material);
-		scene.add( mesh );
-		onRenderFcts.push(function(now, delta){
-			mesh.rotation.x += 0.1 * delta/1000 * Math.PI
-		})
-	})()
-
-	// add some debug display
-	;(function(){
-		var geometry = new THREE.PlaneGeometry(1,1,10,10)
-		var material = new THREE.MeshBasicMaterial( {
-			wireframe : true
-		})
-		var mesh = new THREE.Mesh(geometry, material);
-		scene.add( mesh );
-
-		var mesh = new THREE.AxisHelper
-		scene.add( mesh );
-	})()
-
-	// add a awesome logo to the scene
-	;(function(){
-// return
-		var material = new THREE.SpriteMaterial({
-			map: THREE.ImageUtils.loadTexture( 'images/awesome.png' ),
-		});
-		material.map.minFilter = THREE.LinearFilter
-		var geometry = new THREE.BoxGeometry(1,1,1)
-		var object3d = new THREE.Sprite(material );
-		object3d.scale.set( 1, 1, 1 );
-		scene.add(object3d)
-	})()
-
-
-	//////////////////////////////////////////////////////////////////////////////////
-	//		render the whole thing on the page
-	//////////////////////////////////////////////////////////////////////////////////
-
-	// handle window resize
-	window.addEventListener('resize', function(){
-		renderer.setSize( window.innerWidth, window.innerHeight )
-		camera.aspect	= window.innerWidth / window.innerHeight
-		camera.updateProjectionMatrix()
-	}, false)
-
-	// set the scene as visible
-	scene.visible	= false
-
-	// render the scene
-	onRenderFcts.push(function(){
-		renderer.render( scene, camera );
-	})
-
-	// run the rendering loop
-	var previousTime = performance.now()
-	requestAnimationFrame(function animate(now){
-
-		requestAnimationFrame( animate );
-
-		onRenderFcts.forEach(function(onRenderFct){
-			onRenderFct(now, now - previousTime)
-		})
-
-		previousTime	= nowMsec
-	})
-
-	//////////////////////////////////////////////////////////////////////////////////
-	//		Do the Augmented Reality Upgrade
-	//////////////////////////////////////////////////////////////////////////////////
-
-
+	
 	// init the marker recognition
 	var jsArucoMarker	= new THREEx.JsArucoMarker()
-
-	// init the image source grabbing
 	if( false ){
 		var videoGrabbing = new THREEx.VideoGrabbing()
 		jsArucoMarker.videoScaleDown = 10
 	}else if( true ){
 		var videoGrabbing = new THREEx.WebcamGrabbing()
 		jsArucoMarker.videoScaleDown = 2
-	}else if( true ){
+	}else if( false ){
 		var videoGrabbing = new THREEx.ImageGrabbing()
 		jsArucoMarker.videoScaleDown = 10
 	}else console.assert(false)
 
+	// Wait for video to be loaded to get the size
+	videoGrabbing.domElement.addEventListener('loadeddata', function() {
+	   initApp()
+	}, false);
 	// attach the videoGrabbing.domElement to the body
-        document.body.appendChild(videoGrabbing.domElement)
+    document.body.appendChild(videoGrabbing.domElement);
 
-	// process the image source with the marker recognition
-	onRenderFcts.push(function(){
-		var domElement	= videoGrabbing.domElement
-		var markers	= jsArucoMarker.detectMarkers(domElement)
-		var object3d	= scene
+	function initApp(){
+		var sourceWidth = videoGrabbing.domElement.scrollWidth;
+		var sourceHeight = videoGrabbing.domElement.scrollHeight
 
-		object3d.visible = false
+		//////////////////////////////////////////////////////////////////////////////////
+		//		Init ThreeJS
+		//////////////////////////////////////////////////////////////////////////////////
 
-		// see if this.markerId has been found
-		markers.forEach(function(marker){
-			if( marker.id !== 265 )	return
+		// init renderer
+		var renderer	= new THREE.WebGLRenderer({
+			antialias	: true,
+			alpha		: true,
+		});
+		renderer.setSize( sourceWidth, sourceHeight );
+		document.body.appendChild( renderer.domElement );
 
-			jsArucoMarker.markerToObject3D(marker, object3d)
+		renderer.domElement.style.position = 'absolute';
+	    renderer.domElement.style.top = 0;
+	    renderer.domElement.style.left = 0;
+	    renderer.domElement.style.width  = sourceWidth+"px"; 
+	    renderer.domElement.style.height = sourceHeight+"px";
+	    renderer.domElement.style.zIndex = -1;
+	    renderer.domElement.style.overflow   = "hidden";
+		
+		
 
-			object3d.visible = true
+
+		// array of functions for the rendering loop
+		var onRenderFcts = [];
+
+		// init scene and camera
+		var scene = new THREE.Scene();
+		// test FOV height objet (the plane here), distance
+		var fov = getFOV();
+		var camera	= new THREE.PerspectiveCamera(fov, sourceWidth / sourceHeight, 0.01, 1000);
+		camera.position.z = 2;
+
+		//////////////////////////////////////////////////////////////////////////////////
+		//		add an object in the scene
+		//////////////////////////////////////////////////////////////////////////////////
+
+		// add a rotating earth to the scene
+		;(function(){
+	return
+			var geometry = new THREE.SphereGeometry(0.5, 32, 16, Math.PI)
+			var material = new THREE.MeshBasicMaterial( {
+				map: THREE.ImageUtils.loadTexture("images/earth.jpg")
+			})
+			var mesh = new THREE.Mesh(geometry, material);
+			scene.add( mesh );
+			onRenderFcts.push(function(now, delta){
+				mesh.rotation.x += 0.1 * delta/1000 * Math.PI
+			})
+		})()
+
+		// add some debug display
+		;(function(){
+			var geometry = new THREE.PlaneGeometry(1,1,10,10)
+			var material = new THREE.MeshBasicMaterial( {
+				wireframe : true
+			})
+			var mesh = new THREE.Mesh(geometry, material);
+			scene.add( mesh );
+
+			var mesh = new THREE.AxisHelper
+			scene.add( mesh );
+		})()
+
+		// add a awesome logo to the scene
+		;(function(){
+	// return
+			var material = new THREE.SpriteMaterial({
+				map: THREE.ImageUtils.loadTexture( 'images/awesome.png' ),
+			});
+			material.map.minFilter = THREE.LinearFilter
+			var geometry = new THREE.BoxGeometry(1,1,1)
+			var object3d = new THREE.Sprite(material );
+			object3d.scale.set( 1, 1, 1 );
+			scene.add(object3d)
+		})()
+
+
+		//////////////////////////////////////////////////////////////////////////////////
+		//		render the whole thing on the page
+		//////////////////////////////////////////////////////////////////////////////////
+
+		// set the scene as visible
+		scene.visible	= false
+
+		// render the scene
+		onRenderFcts.push(function(){
+			renderer.render( scene, camera );
 		})
-	})
+
+		// run the rendering loop
+		var previousTime = performance.now()
+		requestAnimationFrame(function animate(now){
+			// keep looping
+			requestAnimationFrame( animate );
+			// call each update function
+			onRenderFcts.forEach(function(onRenderFct){
+				onRenderFct(now, now - previousTime)
+			})
+			// update
+			previousTime	= now
+		})
+
+		//////////////////////////////////////////////////////////////////////////////////
+		//		Do the Augmented Reality Upgrade
+		//////////////////////////////////////////////////////////////////////////////////
+
+		// process the image source with the marker recognition
+		onRenderFcts.push(function(){
+			var domElement	= videoGrabbing.domElement
+			var markers	= jsArucoMarker.detectMarkers(domElement)
+			var object3d	= scene
+
+			object3d.visible = false
+
+			// see if this.markerId has been found
+			markers.forEach(function(marker){
+				if( marker.id !== 265 )	return
+
+				jsArucoMarker.markerToObject3D(marker, object3d)
+
+				object3d.visible = true
+			})
+		})
+
+		//////////////////////////////////////////////////////////////////////////////////
+		//		get fov Camera
+		//////////////////////////////////////////////////////////////////////////////////
+
+		function getFOV(){
+			// 28 fov wanted by aspect ratio, divided by original aspect ratio
+				return (28*sourceHeight/sourceWidth)/(0.5166080500195389);
+		}
+		function updateView(){
+			sourceWidth = videoGrabbing.domElement.scrollWidth;
+			sourceHeight = videoGrabbing.domElement.scrollHeight;
+			
+			renderer.setSize( sourceWidth, sourceHeight );
+			camera.aspect	= sourceWidth / sourceHeight;
+			camera.fov = getFOV();
+			camera.updateProjectionMatrix();
+
+			renderer.domElement.style.width  = sourceWidth+"px"; 
+	    	renderer.domElement.style.height = sourceHeight+"px";
+		}
+		// handle window resize
+		window.addEventListener('resize', function(){
+			updateView();
+		}, false)
+
+		var goFS = document.querySelector("body");
+		goFS.addEventListener("click", function() {
+		  // var container = document.querySelector("body");
+		  // container.webkitRequestFullScreen();
+			// console.log(camera)
+		}, false);
+	}
+
 </script></body>
