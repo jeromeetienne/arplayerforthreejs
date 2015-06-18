@@ -406,7 +406,7 @@ pre .chunk {
 </section>
   </div>
   <div class="slide hidden -" id="slide-2">
-    <section class="slide-content"><h3 id="what-will-i-talk-about-">What will i talk about ?</h3>
+    <section class="slide-content"><h3 id="what-will-i-talk-about-">What Will i Talk About ?</h3>
 <ul>
 <li>Doing Augmented Reality</li>
 <li>Using Web Technology</li>
@@ -415,13 +415,14 @@ pre .chunk {
 </section>
   </div>
   <div class="slide hidden -" id="slide-3">
-    <section class="slide-content"><h3 id="who-i-am">Who i Am</h3>
+    <section class="slide-content"><h3 id="who-i-am-">Who i Am ?</h3>
 <ul>
-<li><a href="https://twitter.com/jerome_etienne">@jerome_etienne</a> on twitter</li>
-<li>Lead for Three.js Team</li>
-<li>Daqri Office in Dublin</li>
-<li><a href="http://learningthreejs.com/">Learning Three.js</a> blog author</li>
+<li><a href="http://learningthreejs.com/">Learning Three.js Author</a> author</li>
+<li>Wrote more than <a href="">45 game extensions for three.js</a></li>
+<li>Lead for
+Three.js Team at <a href="http://daqri.com">Daqri</a> in Dublin</li>
 </ul>
+<p>Contact me on twitter <a href="https://twitter.com/jerome_etienne">@jerome_etienne</a></p>
 </section>
   </div>
   <div class="slide hidden -" id="slide-4">
@@ -439,41 +440,96 @@ pre .chunk {
 </section>
   </div>
   <div class="slide hidden -" id="slide-7">
-    <section class="slide-content"><h3 id="a-pinch-of-web-standard">A Pinch of Web Standard</h3>
-<ul>
-<li>webrtc / getUserMedia - <a href="http://www.w3.org/TR/mediacapture-streams/">spec</a></li>
-<li>WebGL - <a href="https://www.khronos.org/registry/webgl/specs/latest/">spec</a></li>
-<li>Usual web - javascript/html/css etc...</li>
-</ul>
+    <section class="slide-content"><h2 id="let-s-see-what-we-need">Let&#39;s see What We Need</h2>
 </section>
   </div>
   <div class="slide hidden -" id="slide-8">
-    <section class="slide-content"><h3 id="a-spoon-of-open-source">A Spoon of Open Source</h3>
-<ul>
-<li><a href="http://threejs.org/">three.js</a> to ease webgl display</li>
-<li><a href="https://github.com/jcmellado/js-aruco">jsaruco</a> to find AR markers in video stream</li>
-</ul>
+    <section class="slide-content"><h3 id="ingredients-needed-for-ar">Ingredients Needed For AR</h3>
+<ol>
+<li>Get a camera feed </li>
+<li>Analize it to localize AR Markers</li>
+<li>Generate 3d on top </li>
+<li>Finally Display both, 3d and video, on the screen</li>
+</ol>
 </section>
   </div>
   <div class="slide hidden -" id="slide-9">
-    <section class="slide-content"><h2 id="all-the-ingredients-seems-to-be-there-">All the ingredients seems to be there...</h2>
+    <section class="slide-content"><h2 id="a-pinch-of-web-standards">A Pinch of Web Standards</h2>
 </section>
   </div>
   <div class="slide hidden -" id="slide-10">
-    <section class="slide-content"><h2 id="let-s-see-how-far-can-we-go-">Let&#39;s see how far can we go ?</h2>
+    <section class="slide-content"><h3 id="camera-feed">Camera Feed</h3>
+<ul>
+<li>Simple color video like Webcam</li>
+<li>webrtc/getUserMedia - <a href="http://www.w3.org/TR/mediacapture-streams/">spec</a> - <a href="http://simpl.info/getusermedia/">example</a></li>
+<li>Supported on Desktop and Android mobile</li>
+<li>not IOS unfortunatly - <a href="http://caniuse.com/#feat=stream">details</a></li>
+</ul>
 </section>
   </div>
   <div class="slide hidden -" id="slide-11">
-    <section class="slide-content"><h3 id="display-webgl">Display Webgl</h3>
+    <section class="slide-content"><h3 id="display-3d">Display 3D</h3>
 <ul>
-<li>webgl is based on opengl ES 2.0</li>
-<li>Three.js javascript library from <a href="https://twitter.com/mrdoob">mrdoob</a></li>
-<li>Leading library to display webgl</li>
-<li>MIT license, so easy to integrate</li>
+<li>WebGL - <a href="https://www.khronos.org/registry/webgl/specs/latest/">spec</a></li>
+<li>Based on openGL 2.0</li>
+<li>Available on desktop and modern mobile phones</li>
 </ul>
 </section>
   </div>
   <div class="slide hidden -" id="slide-12">
+    <section class="slide-content"><h3 id="usual-web-platform">Usual Web Platform</h3>
+<ul>
+<li>Javascript to code the app</li>
+<li>CSS to layout elements on the page</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-13">
+    <section class="slide-content"><h2 id="all-the-ingredients-are-there-">All the Ingredients are there...</h2>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-14">
+    <section class="slide-content"><h1 id="demo-time">Demo Time</h1>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-15">
+    <section class="slide-content"><p>TODO here show video of each the Demo</p>
+<ul>
+<li>video is safer</li>
+<li>no live</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-16">
+    <section class="slide-content"></section>
+  </div>
+  <div class="slide hidden -" id="slide-17">
+    <section class="slide-content"><h2 id="how-we-implemented-it">How we implemented it</h2>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-18">
+    <section class="slide-content"><h3 id="a-spoon-of-open-source">A Spoon of Open Source</h3>
+<ul>
+<li><a href="http://threejs.org/">three.js</a> to ease webgl display</li>
+<li><a href="https://github.com/jcmellado/js-aruco">jsaruco</a> to find AR markers within video streams</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-19">
+    <section class="slide-content"><h2 id="let-s-see-how-far-can-we-go-">Let&#39;s see how far can we go ?</h2>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-20">
+    <section class="slide-content"><h3 id="display-webgl">Display WebGL</h3>
+<ul>
+<li>Three.js javascript library from <a href="https://twitter.com/mrdoob">mrdoob</a></li>
+<li>Leading library to display webgl</li>
+<li>MIT license, so easy to integrate</li>
+<li>Run on desktop and mobile.</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-21">
     <section class="slide-content"><h3 id="ar-marker-recognition">AR Marker Recognition</h3>
 <p>Several possibilities, we focused on</p>
 <ul>
@@ -482,55 +538,212 @@ pre .chunk {
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-13">
+  <div class="slide hidden -" id="slide-22">
     <section class="slide-content"><h3 id="js-aruco">js-aruco</h3>
-</section>
-  </div>
-  <div class="slide hidden -" id="slide-14">
-    <section class="slide-content"><h3 id="jsartoolkit">jsartoolkit</h3>
+<blockquote>
+<blockquote>
+<blockquote>
+<p>ArUco library is a minimal library for Augmented Reality 
+applications based on OpenCv.</p>
+</blockquote>
+</blockquote>
+</blockquote>
 <ul>
-<li>what is it ? relation with artoolkit</li>
-<li>who did it </li>
-<li>to use it in this in the pipe</li>
+<li>js-aruco is a Javascript Port of <a href="http://www.uco.es/investiga/grupos/ava/node/26">ArUco library</a>.</li>
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-15">
+  <div class="slide hidden -" id="slide-23">
+    <section class="slide-content"><h3 id="jsartoolkit">jsartoolkit</h3>
+<ul>
+<li>Javascript port of <a href="artoolkit.org">artoolkit</a> - Rather Old - 3 years old</li>
+<li>Written by <a href="http://www.fhtr.net/">Ilmari Heikkinen</a></li>
+<li>Available on <a href="https://github.com/kig/JSARToolKit">github</a></li>
+<li>To use it in this in the pipe</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-24">
+    <section class="slide-content"><ul>
+<li>We picked js-aruco </li>
+<li>Using js-artoolkit is in progress</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-25">
+    <section class="slide-content"><h1 id="blank">Blank</h1>
+</section>
+  </div>
+  <div class="slide hidden ---------------------------------------" id="slide-26">
+    <section class="slide-content"></section>
+  </div>
+  <div class="slide hidden -" id="slide-27">
+    <section class="slide-content"><h1 id="blank">Blank</h1>
+</section>
+  </div>
+  <div class="slide hidden ---------------------------------------" id="slide-28">
+    <section class="slide-content"></section>
+  </div>
+  <div class="slide hidden -" id="slide-29">
+    <section class="slide-content"><h1 id="how-does-web-compare-with-native-">How Does Web Compare with Native ?</h1>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-30">
+    <section class="slide-content"><h2 id="well-it-depends-">Well it depends... :)</h2>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-31">
+    <section class="slide-content"><h3 id="pro-native">PRO Native</h3>
+<ul>
+<li>Better controls on running platform<ul>
+<li>e.g. can&#39;t read webcam in ios browser </li>
+<li>but possible in ios native </li>
+</ul>
+</li>
+<li>More efficient<ul>
+<li>native typically run faster</li>
+<li>less latency.</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-32">
+    <section class="slide-content"><h3 id="pro-web">PRO Web</h3>
+<ul>
+<li>Lots less code to write<ul>
+<li>no need for android version + ios version</li>
+</ul>
+</li>
+<li>Easier to learn<ul>
+<li>More standard</li>
+<li>Less Varied</li>
+</ul>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-33">
+    <section class="slide-content"><h3 id="choosing-between-native-and-web">Choosing Between Native and Web</h3>
+<ul>
+<li><p>It depends on your goals</p>
+</li>
+<li><p>For serious, long term project, native may be better</p>
+</li>
+<li><p>For fun, short project, go for web technology</p>
+</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-34">
+    <section class="slide-content"><h1 id="blank">Blank</h1>
+</section>
+  </div>
+  <div class="slide hidden -------------------------------------------" id="slide-35">
+    <section class="slide-content"></section>
+  </div>
+  <div class="slide hidden -" id="slide-36">
+    <section class="slide-content"><h1 id="demos">Demos</h1>
+<ul>
+<li>TODO explains each demo</li>
+<li>TODO what could be reused</li>
+<li>TODO inpire people</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-37">
+    <section class="slide-content"><h1 id="blank">Blank</h1>
+</section>
+  </div>
+  <div class="slide hidden -------------------------------------------" id="slide-38">
+    <section class="slide-content"></section>
+  </div>
+  <div class="slide hidden -" id="slide-39">
     <section class="slide-content"><h1 id="markers">Markers</h1>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-16">
-    <section class="slide-content"><h3 id="looks">Looks</h3>
+  <div class="slide hidden -" id="slide-40">
+    <section class="slide-content"><h3 id="looks-like-that">Looks Like That</h3>
+<p><img src="images/image-marker-265.png" width="50%"></p>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-41">
+    <section class="slide-content"><h2 id="not-too-sexy-but-practical">Not too sexy but practical</h2>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-42">
+    <section class="slide-content"><h3 id="markers-details">Markers Details</h3>
 <ul>
-<li>not too sexy</li>
-<li>but practical</li>
+<li>Each got a ID</li>
+<li>From 0 to 1023</li>
+<li>Simple to recognize many markers</li>
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-17">
-    <section class="slide-content"><h2 id="markers-details">Markers Details</h2>
+  <div class="slide hidden -" id="slide-43">
+    <section class="slide-content"><h3 id="this-one-is-265">This One is 265</h3>
+<p><img src="images/image-marker-265.png" width="50%"></p>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-44">
+    <section class="slide-content"><h3 id="how-to-generate-marker">How to Generate Marker</h3>
 <ul>
-<li>each got a ID</li>
-<li>from 0 to 1023</li>
+<li>Web app to automatically generate it</li>
+<li>find it in <a href="http://jeromeetienne.github.io/arplayerforthreejs/marker/builder/iframe.html#265">repo</a></li>
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-18">
-    <section class="slide-content"><h2 id="how-to-generate-marker">How to generate Marker</h2>
-<ul>
-<li>you got a application in the repo</li>
-<li>how to use it</li>
-</ul>
+  <div class="slide hidden -" id="slide-45">
+    <section class="slide-content"><h2 id="what-to-do-with-it-">What to do with it ?</h2>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-19">
-    <section class="slide-content"><h3 id="where-to-print-it">Where to print it</h3>
+  <div class="slide hidden -" id="slide-46">
+    <section class="slide-content"><h3 id="print-it-on-paper">Print It on Paper</h3>
 <ul>
-<li>you can print it on paper</li>
-<li>you can simply display it on a</li>
-<li>May cause some reflect because phone screen are shiny</li>
+<li>CON: Require a printer</li>
+<li>PRO: No/little reflection - so ease recognition</li>
 <li>So paper is usually better</li>
+<li>Glue it on cardboard for robustness</li>
 </ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-47">
+    <section class="slide-content"><h3 id="display-it-on-mobile">Display it on Mobile</h3>
+<ul>
+<li>Load the image on your phone or tablet</li>
+<li>Put the mobile in front of the camera</li>
+<li>CON: mobile screens reflective</li>
+<li>PRO: highly available</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-48">
+    <section class="slide-content"><h3 id="where-to-put-the-marker-">Where to put the marker ?</h3>
+<p>In front of the camera :)</p>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-49">
+    <section class="slide-content"><h3 id="moving-the-camera">Moving the camera</h3>
+<ul>
+<li>fix marker on walls/tables</li>
+<li>move around with the camera</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-50">
+    <section class="slide-content"><p>TODO image of moving camera app</p>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-51">
+    <section class="slide-content"><h3 id="moving-the-marker">Moving the marker</h3>
+<ul>
+<li>fix the camera</li>
+<li>move the marker around</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-52">
+    <section class="slide-content"><p>TODO image of moving marker app</p>
 </section>
   </div>
 
