@@ -1,12 +1,14 @@
 - intro on what is augmented reality
 - pro/con of the pure-web alternatives
 - limitation of the solution
+
 - how to use it during the hackathon
 - practical details
   - location of the code
   - how to reproduce the demos
 - what is provided
-
+- what can be done
+- add examples and screenshot you made in the past
 
 
 ---
@@ -34,7 +36,7 @@
 
 ---
 
-## How to pick
+## How to Choose Between Native and Web
 - It depends on your goals
 - For serious, long term project, native may be better
 - For fun, short project, web
