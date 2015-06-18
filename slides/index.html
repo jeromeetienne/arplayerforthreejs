@@ -402,52 +402,128 @@ pre .chunk {
 
   <div class="slide" id="slide-1">
     <section class="slide-content"><h1 id="augmented-reality-in-three-js">Augmented Reality in Three.js</h1>
+<h2 id="by-jerome_etienne-https-twitter-com-jerome_etienne-">By <a href="https://twitter.com/jerome_etienne">@jerome_etienne</a></h2>
 </section>
   </div>
   <div class="slide hidden -" id="slide-2">
-    <section class="slide-content"><h2 id="by-jerome-etienne">By Jerome Etienne</h2>
+    <section class="slide-content"><h3 id="what-will-i-talk-about-">What will i talk about ?</h3>
 <ul>
-<li>Lead for Three.js Team</li>
-<li>Daqri Office in Dublin</li>
-<li>@jerome_etienne</li>
+<li>Doing Augmented Reality</li>
+<li>Using Web Technology</li>
+<li>Using Open Source</li>
 </ul>
 </section>
   </div>
   <div class="slide hidden -" id="slide-3">
-    <section class="slide-content"><h1 id="possible-applications">Possible applications</h1>
+    <section class="slide-content"><h3 id="who-i-am">Who i Am</h3>
+<ul>
+<li><a href="https://twitter.com/jerome_etienne">@jerome_etienne</a> on twitter</li>
+<li>Lead for Three.js Team</li>
+<li>Daqri Office in Dublin</li>
+<li><a href="http://learningthreejs.com/">Learning Three.js</a> blog author</li>
+</ul>
 </section>
   </div>
   <div class="slide hidden -" id="slide-4">
-    <section class="slide-content"><ul>
-<li>Various suggestions to inpire you</li>
-</ul>
+    <section class="slide-content"><h1 id="the-challenge">The Challenge</h1>
 </section>
   </div>
   <div class="slide hidden -" id="slide-5">
-    <section class="slide-content"><h1 id="anotate-your-space">anotate your space</h1>
-<ul>
-<li>you got markers everywhere in your space</li>
-<li>you can attach data to those marker</li>
-<li>you can share them together</li>
-</ul>
+    <section class="slide-content"><h4 id="doing-ar">Doing AR</h4>
+<h4 id="with-web-technology">with Web Technology</h4>
+<h4 id="and-open-source">And Open Source</h4>
 </section>
   </div>
   <div class="slide hidden -" id="slide-6">
-    <section class="slide-content"><h1 id="multi-user-ar">Multi user AR</h1>
-<ul>
-<li>you got a single marker in the</li>
-</ul>
+    <section class="slide-content"><h1 id="a-good-recipe-">A Good Recipe ?</h1>
 </section>
   </div>
   <div class="slide hidden -" id="slide-7">
-    <section class="slide-content"><h1 id="how-to-generate-marker">How to generate Marker</h1>
+    <section class="slide-content"><h3 id="a-pinch-of-web-standard">A Pinch of Web Standard</h3>
+<ul>
+<li>webrtc / getUserMedia - <a href="http://www.w3.org/TR/mediacapture-streams/">spec</a></li>
+<li>WebGL - <a href="https://www.khronos.org/registry/webgl/specs/latest/">spec</a></li>
+<li>Usual web - javascript/html/css etc...</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-8">
+    <section class="slide-content"><h3 id="a-spoon-of-open-source">A Spoon of Open Source</h3>
+<ul>
+<li><a href="http://threejs.org/">three.js</a> to ease webgl display</li>
+<li><a href="https://github.com/jcmellado/js-aruco">jsaruco</a> to find AR markers in video stream</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-9">
+    <section class="slide-content"><h2 id="all-the-ingredients-seems-to-be-there-">All the ingredients seems to be there...</h2>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-10">
+    <section class="slide-content"><h2 id="let-s-see-how-far-can-we-go-">Let&#39;s see how far can we go ?</h2>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-11">
+    <section class="slide-content"><h3 id="display-webgl">Display Webgl</h3>
+<ul>
+<li>webgl is based on opengl ES 2.0</li>
+<li>Three.js javascript library from <a href="https://twitter.com/mrdoob">mrdoob</a></li>
+<li>Leading library to display webgl</li>
+<li>MIT license, so easy to integrate</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-12">
+    <section class="slide-content"><h3 id="ar-marker-recognition">AR Marker Recognition</h3>
+<p>Several possibilities, we focused on</p>
+<ul>
+<li>jsaruco</li>
+<li>jsartoolkit</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-13">
+    <section class="slide-content"><h3 id="js-aruco">js-aruco</h3>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-14">
+    <section class="slide-content"><h3 id="jsartoolkit">jsartoolkit</h3>
+<ul>
+<li>what is it ? relation with artoolkit</li>
+<li>who did it </li>
+<li>to use it in this in the pipe</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-15">
+    <section class="slide-content"><h1 id="markers">Markers</h1>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-16">
+    <section class="slide-content"><h3 id="looks">Looks</h3>
+<ul>
+<li>not too sexy</li>
+<li>but practical</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-17">
+    <section class="slide-content"><h2 id="markers-details">Markers Details</h2>
+<ul>
+<li>each got a ID</li>
+<li>from 0 to 1023</li>
+</ul>
+</section>
+  </div>
+  <div class="slide hidden -" id="slide-18">
+    <section class="slide-content"><h2 id="how-to-generate-marker">How to generate Marker</h2>
 <ul>
 <li>you got a application in the repo</li>
 <li>how to use it</li>
 </ul>
 </section>
   </div>
-  <div class="slide hidden -" id="slide-8">
+  <div class="slide hidden -" id="slide-19">
     <section class="slide-content"><h3 id="where-to-print-it">Where to print it</h3>
 <ul>
 <li>you can print it on paper</li>

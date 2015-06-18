@@ -4,38 +4,120 @@ output: index.html
 
 # Augmented Reality in Three.js
 
+## By [@jerome_etienne](https://twitter.com/jerome_etienne)
+
 ---
 
-## By Jerome Etienne
+### What will i talk about ?
 
+- Doing Augmented Reality
+- Using Web Technology
+- Using Open Source
+
+---
+
+### Who i Am
+
+- [@jerome_etienne](https://twitter.com/jerome_etienne) on twitter
 - Lead for Three.js Team
 - Daqri Office in Dublin
-- @jerome_etienne
+- [Learning Three.js](http://learningthreejs.com/) blog author
 
 ---
 
-# Possible applications
+# The Challenge
 
 ---
 
-- Various suggestions to inpire you
+#### Doing AR 
+
+#### with Web Technology 
+
+#### And Open Source
+
+---
+
+# A Good Recipe ?
+
+---
+
+### A Pinch of Web Standard
+
+- webrtc / getUserMedia - [spec](http://www.w3.org/TR/mediacapture-streams/)
+- WebGL - [spec](https://www.khronos.org/registry/webgl/specs/latest/)
+- Usual web - javascript/html/css etc...
+
+---
+
+### A Spoon of Open Source
+
+- [three.js](http://threejs.org/) to ease webgl display
+- [jsaruco](https://github.com/jcmellado/js-aruco) to find AR markers in video stream 
+
+---
+
+## All the ingredients seems to be there...
+
+---
+
+## Let's see how far can we go ?
+
+---
+
+### Display Webgl
+
+- webgl is based on opengl ES 2.0
+- Three.js javascript library from [mrdoob](https://twitter.com/mrdoob)
+- Leading library to display webgl
+- MIT license, so easy to integrate
+
+---
+
+### AR Marker Recognition
+
+Several possibilities, we focused on
+
+- jsaruco
+- jsartoolkit
+
+---
+
+### js-aruco
+
+---
+
+### jsartoolkit
+
+- what is it ? relation with artoolkit
+- who did it 
+- to use it in this in the pipe
+
+
 
 
 ---
 
-# anotate your space
-- you got markers everywhere in your space
-- you can attach data to those marker
-- you can share them together
+# Markers
 
 ---
 
-# Multi user AR
-- you got a single marker in the
+### Looks
+
+- not too sexy
+- but practical
 
 ---
 
-# How to generate Marker
+## Markers Details
+
+- each got a ID
+- from 0 to 1023
+
+
+
+---
+
+## How to generate Marker
 
 - you got a application in the repo
 - how to use it
