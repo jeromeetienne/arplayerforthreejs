@@ -1,4 +1,4 @@
-title: Three.js Mini Game Workshop
+title: Augmented Reality in Three.js
 output: index.html
 --
 
@@ -11,15 +11,15 @@ output: index.html
 ### What Will i Talk About ?
 
 - Doing Augmented Reality
-- Using Web Technology
-- Using Open Source
+- Using Only Web Technology
+- Using Only Open Source
 
 ---
 
 ### Who i Am ?
 
-- [Learning Three.js Author](http://learningthreejs.com/) author
-- Wrote more than [45 game extensions for three.js]()
+- The author of [Learning Three.js Blog](http://learningthreejs.com/)
+- Wrote more than [45 game extensions for three.js](http://www.threejsgames.com/extensions/)
 - Lead for
 Three.js Team at [Daqri](http://daqri.com) in Dublin
 
@@ -50,7 +50,7 @@ Contact me on twitter [@jerome_etienne](https://twitter.com/jerome_etienne)
 ### Ingredients Needed For AR
 
 1. Get a camera feed 
-1. Analize it to localize AR Markers
+1. Analyze it to localize AR Markers
 1. Generate 3d on top 
 1. Finally Display both, 3d and video, on the screen
 
@@ -97,6 +97,19 @@ TODO here show video of each the Demo
 - no live
 
 ---
+
+### Hatsune Miku - [link](https://vine.co/v/eApD5rPtKxT)
+
+model by [@superhoge](https://twitter.com/superhoge)
+
+<iframe src="https://vine.co/v/eApD5rPtKxT/embed/simple" width="480" height="480" frameborder="0"></iframe>
+
+---
+
+### Being Awesome - [link][https://twitter.com/jerome_etienne/status/608743377077739520]
+
+<img src="images/being-awesome.jpg" width="50%">
+
 
 ---
 
