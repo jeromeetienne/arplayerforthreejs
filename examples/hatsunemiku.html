@@ -1,12 +1,8 @@
 <!DOCTYPE html>
 <!-- include three.js -->
-<script src='../vendor/three.js/build/three.js'></script>
-<script src='../vendor/three.js/editor/js/libs/app.js'></script>
-
 <script src="../vendor/three.js/build/three.min.js"></script>
 
 <script src="../vendor/three.js/examples/js/loaders/MMDLoader.js"></script>
-
 <script src="../vendor/three.js/src/extras/animation/MorphAnimation2.js"></script>
 <script src="../vendor/three.js/src/extras/animation/CCDIKSolver.js"></script>
 
@@ -72,16 +68,12 @@
 
 	// init scene and camera
 	var scene = new THREE.Scene()
-	var camera	= new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.01, 1000);
+	var camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.01, 1000);
 	camera.position.z = 2;
 
-
 	var container = new THREE.Object3D
-	container.scale.set(1,1,1).multiplyScalar(1/20)
-	container.rotation.x = Math.PI/2
 	scene.add(container)
-	window.container = container
-
+	
 	//////////////////////////////////////////////////////////////////////////////////
 	//		set 3 point lighting						//
 	//////////////////////////////////////////////////////////////////////////////////
@@ -114,15 +106,15 @@
 			wireframe : true
 		})
 		var mesh = new THREE.Mesh(geometry, material);
-		scene.add( mesh );
+		container.add( mesh );
 
 		var mesh = new THREE.AxisHelper
-		scene.add( mesh );
+		container.add( mesh );
 	})()
 
 	// add a awesome logo to the scene
 	;(function(){
-		return
+		// return
 		var material = new THREE.SpriteMaterial({
 			map: THREE.ImageUtils.loadTexture( 'images/awesome.png' ),
 		});
@@ -133,25 +125,17 @@
 	})()
 
 	;(function(){
-		// model
-		var onProgress = function ( xhr ) {
-			if ( xhr.lengthComputable ) {
-				var percentComplete = xhr.loaded / xhr.total * 100;
-				console.log( Math.round(percentComplete, 2) + '% downloaded' );
-			}
-		};
-
-		var onError = function ( xhr ) {
-		};
-
 		var loader = new THREE.MMDLoader();
-		loader.load( '../vendor/three.js/examples/models/miku/miku_v2.pmd', '../vendor/three.js/examples/models/miku/wavefile_v2.vmd', function ( mesh ) {
+		var modelUrl = '../vendor/three.js/examples/models/miku/' 
+		loader.load( modelUrl+'miku_v2.pmd', modelUrl+'wavefile_v2.vmd', function onLoad(mesh){
+
+			mesh.scale.set(1,1,1).multiplyScalar(1/20)
+			mesh.rotation.x = Math.PI/2
 
 			container.add( mesh );
 
 			var animation = new THREE.Animation( mesh, mesh.geometry.animation );
 			animation.play();
-
 
 			var morphAnimation = new THREE.MorphAnimation2( mesh, mesh.geometry.morphAnimation );
 			morphAnimation.play();
@@ -163,8 +147,13 @@
 				THREE.AnimationHandler.update( clock.getDelta() );
 				ikSolver.update();
 			})
-
-		}, onProgress, onError );
+		}, function onProgress(xhr){
+			if ( xhr.lengthComputable ) {
+				var percentComplete = xhr.loaded / xhr.total * 100;
+				console.log( Math.round(percentComplete, 2) + '% downloaded' );
+			}
+		}, function onError( xhr ) {
+		} );
 	})()
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -235,8 +224,6 @@
 
 		// see if this.markerId has been found
 		markers.forEach(function(marker){
-
-			// if( marker.id !== 265 )	return
 
 			jsArucoMarker.markerToObject3D(marker, object3d)
 
