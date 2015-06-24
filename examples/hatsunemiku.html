@@ -72,8 +72,8 @@
 	var camera = new THREE.PerspectiveCamera(40, window.innerWidth / window.innerHeight, 0.01, 1000);
 	camera.position.z = 2;
 
-	var container = new THREE.Object3D
-	scene.add(container)
+	var markerContainer = new THREE.Object3D
+	scene.add(markerContainer)
 
 	//////////////////////////////////////////////////////////////////////////////////
 	//		set 3 point lighting						//
@@ -81,19 +81,23 @@
 	;(function(){
 		var object3d	= new THREE.AmbientLight(0x101010)
 		object3d.name	= 'Ambient light'
-		scene.add(object3d)
-		var object3d	= new THREE.DirectionalLight('white', 0.225*1.6)
-		object3d.position.set(2.6,1,3)
+		// scene.add(object3d)
+		var object3d	= new THREE.DirectionalLight('white', 1.6)
+		object3d.position.set(2.6,1,3).setLength(20)
 		object3d.name	= 'Back light'
 		scene.add(object3d)
+
+		scene.add( new THREE.DirectionalLightHelper( object3d, 2  ));
+
+
 		var object3d	= new THREE.DirectionalLight('white', 0.375*1.6)
 		object3d.position.set(-2, -1, 0)
 		object3d.name 	= 'Key light'
-		scene.add(object3d)
+		// scene.add(object3d)
 		var object3d	= new THREE.DirectionalLight('white', 0.8*1)
 		object3d.position.set(3, 3, 2)
 		object3d.name	= 'Fill light'
-		scene.add(object3d)
+		// scene.add(object3d)
 	})()
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -107,10 +111,10 @@
 			wireframe : true
 		})
 		var mesh = new THREE.Mesh(geometry, material);
-		container.add( mesh );
+		markerContainer.add( mesh );
 
 		var mesh = new THREE.AxisHelper
-		container.add( mesh );
+		markerContainer.add( mesh );
 	})()
 
 	// add a awesome logo to the scene
@@ -121,19 +125,28 @@
 		});
 		var geometry = new THREE.BoxGeometry(1,1,1)
 		var object3d = new THREE.Sprite(material );
-		object3d.scale.set( 2, 2, 1 );
+		object3d.scale.set( 1, 1, 1 ).multiplyScalar(1.3)
+		object3d.position.z	= 1.4
 		scene.add(object3d)
+
+		onRenderFcts.push(function(now, delta){
+			var angle = Math.PI * now / 1000;
+			object3d.position.z	= 1.4 + Math.cos(angle)*0.1
+
+			var angle = Math.PI * now / 1000;
+			object3d.position.x	= 0 + Math.sin(angle)*0.1
+		})
 	})()
 
 	;(function(){
 		var loader = new THREE.MMDLoader();
-		var modelUrl = '../vendor/three.js/examples/models/miku/'
+		var modelUrl = 'models/miku/'
 		loader.load( modelUrl+'miku_v2.pmd', modelUrl+'wavefile_v2.vmd', function onLoad(mesh){
 
 			mesh.scale.set(1,1,1).multiplyScalar(1/20)
 			mesh.rotation.x = Math.PI/2
 
-			container.add( mesh );
+			markerContainer.add( mesh );
 
 			var animation = new THREE.Animation( mesh, mesh.geometry.animation );
 			animation.play();
@@ -143,9 +156,8 @@
 
 			var ikSolver = new THREE.CCDIKSolver( mesh );
 
-			var clock = new THREE.Clock();
-			onRenderFcts.push(function(){
-				THREE.AnimationHandler.update( clock.getDelta() );
+			onRenderFcts.push(function(now, delta){
+				THREE.AnimationHandler.update( delta/1000 );
 				ikSolver.update();
 			})
 		}, function onProgress(xhr){
