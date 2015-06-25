@@ -68,7 +68,15 @@
 	camera.position.z = 2;
 
 	//////////////////////////////////////////////////////////////////////////////////
-	//		add an object in the scene
+	//		create a markerObject3D
+	//////////////////////////////////////////////////////////////////////////////////
+	var markerObject3D = new THREE.Object3D()
+	scene.add(markerObject3D)
+	// set the markerObject3D as visible
+	markerObject3D.visible	= false
+
+	//////////////////////////////////////////////////////////////////////////////////
+	//		add an object in the markerObject3D
 	//////////////////////////////////////////////////////////////////////////////////
 
 	// add some debug display
@@ -78,10 +86,10 @@
 			wireframe : true
 		})
 		var mesh = new THREE.Mesh(geometry, material);
-		scene.add( mesh );
+		markerObject3D.add( mesh );
 
 		var mesh = new THREE.AxisHelper
-		scene.add( mesh );
+		markerObject3D.add( mesh );
 	})()
 
 	// add a awesome logo to the scene
@@ -92,7 +100,7 @@
 		var geometry = new THREE.BoxGeometry(1,1,1)
 		var object3d = new THREE.Sprite(material );
 		object3d.scale.set( 2, 2, 1 );
-		scene.add(object3d)
+		markerObject3D.add(object3d)
 	})()
 
 	//////////////////////////////////////////////////////////////////////////////////
@@ -106,8 +114,6 @@
 		camera.updateProjectionMatrix()
 	}, false)
 
-	// set the scene as visible
-	scene.visible	= false
 
 	// render the scene
 	onRenderFcts.push(function(){
@@ -128,7 +134,7 @@
 	})
 
 	//////////////////////////////////////////////////////////////////////////////////
-	//		Do the Augmented Reality Upgrade
+	//		Do the Augmented Reality part
 	//////////////////////////////////////////////////////////////////////////////////
 
 
@@ -157,18 +163,17 @@
 	onRenderFcts.push(function(){
 		var domElement	= videoGrabbing.domElement
 		var markers	= jsArucoMarker.detectMarkers(domElement)
-		var object3d	= scene
 
-		object3d.visible = false
+		markerObject3D.visible = false
 
 		// see if this.markerId has been found
 		markers.forEach(function(marker){
 
 			// if( marker.id !== 265 )	return
 
-			jsArucoMarker.markerToObject3D(marker, object3d)
+			jsArucoMarker.markerToObject3D(marker, markerObject3D)
 
-			object3d.visible = true
+			markerObject3D.visible = true
 		})
 	})
 </script></body>
