@@ -1,3 +1,7 @@
+
+# Retired project migrated to [threex.webar](https://github.com/jeromeetienne/threex.webar)
+Please update your links
+
 # Augmented Reality For Three.js
 
 This demo shows how to get augmented reality using only web technologies.
